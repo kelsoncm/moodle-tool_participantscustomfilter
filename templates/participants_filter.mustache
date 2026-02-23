@@ -1,0 +1,79 @@
+{{!
+    Template: custom profile field filter form shown above the participants table.
+
+    @package    local_participantscustomfilter
+    @copyright  2024 IFRN
+    @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+
+    Context variables:
+        * courseid      int     - Course id.
+        * fields        array   - [{shortname, name, selected}]
+        * hasfields     bool    - At least one custom field exists.
+        * currentfield  string  - Shortname of the currently selected field.
+        * currentvalue  string  - Currently active filter value.
+        * isfiltered    bool    - A filter is currently active.
+        * actionurl     string  - Form action URL.
+        * clearurl      string  - URL to clear the filter.
+}}
+<div class="local-participantscustomfilter-wrap card mb-3"
+     id="local-participantscustomfilter-wrap"
+     data-region="local-participantscustomfilter">
+    <div class="card-body">
+        <h6 class="card-title font-weight-bold mb-2">
+            {{#str}} filterbyprofilefield, local_participantscustomfilter {{/str}}
+        </h6>
+        {{#hasfields}}
+        <form method="get" action="{{actionurl}}" class="form-inline flex-wrap gap-2"
+              id="local-participantscustomfilter-form">
+            <input type="hidden" name="id" value="{{courseid}}">
+
+            <div class="form-group mb-2 mr-2">
+                <label class="mr-1 sr-only" for="filtercustomfield">
+                    {{#str}} profilefield, local_participantscustomfilter {{/str}}
+                </label>
+                <select name="filtercustomfield"
+                        id="filtercustomfield"
+                        class="custom-select form-control"
+                        aria-label="{{#str}} profilefield, local_participantscustomfilter {{/str}}">
+                    <option value="">
+                        {{#str}} selectfield, local_participantscustomfilter {{/str}}
+                    </option>
+                    {{#fields}}
+                    <option value="{{shortname}}"{{#selected}} selected="selected"{{/selected}}>
+                        {{name}}
+                    </option>
+                    {{/fields}}
+                </select>
+            </div>
+
+            <div class="form-group mb-2 mr-2">
+                <label class="mr-1 sr-only" for="filtervalue">
+                    {{#str}} value, local_participantscustomfilter {{/str}}
+                </label>
+                <input type="text"
+                       name="filtervalue"
+                       id="filtervalue"
+                       class="form-control"
+                       value="{{currentvalue}}"
+                       placeholder="{{#str}} filtervalue, local_participantscustomfilter {{/str}}"
+                       aria-label="{{#str}} value, local_participantscustomfilter {{/str}}">
+            </div>
+
+            <button type="submit" class="btn btn-primary mb-2 mr-2">
+                {{#str}} filter, local_participantscustomfilter {{/str}}
+            </button>
+
+            {{#isfiltered}}
+            <a href="{{clearurl}}" class="btn btn-secondary mb-2">
+                {{#str}} clearfilter, local_participantscustomfilter {{/str}}
+            </a>
+            {{/isfiltered}}
+        </form>
+        {{/hasfields}}
+        {{^hasfields}}
+        <p class="text-muted mb-0">
+            {{#str}} nocustomfields, local_participantscustomfilter {{/str}}
+        </p>
+        {{/hasfields}}
+    </div>
+</div>

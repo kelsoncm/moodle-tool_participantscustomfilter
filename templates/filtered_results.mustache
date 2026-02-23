@@ -1,0 +1,42 @@
+{{!
+    Template: filtered participants results table.
+
+    @package    local_participantscustomfilter
+    @copyright  2024 IFRN
+    @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+
+    Context variables:
+        * total       int    - Total number of matching participants.
+        * hasusers    bool   - True when at least one user matches.
+        * users       array  - [{id, fullname, email, username, profileurl}]
+        * courseid    int    - Course id.
+        * fieldlabel  string - Human-readable label of the active filter field.
+        * filtervalue string - The value being filtered by.
+}}
+<div class="local-participantscustomfilter-results mt-3"
+     id="local-participantscustomfilter-results">
+
+    <h6 class="font-weight-bold">
+        {{#str}} filteredresults, local_participantscustomfilter {{/str}}
+        <span class="badge badge-secondary ml-1">{{total}}</span>
+    </h6>
+
+    {{^hasusers}}
+    <p class="text-muted">
+        {{#str}} noresults, local_participantscustomfilter {{/str}}
+    </p>
+    {{/hasusers}}
+
+    {{#hasusers}}
+    <div class="list-group list-group-flush mb-0">
+        {{#users}}
+        <a href="{{profileurl}}"
+           class="list-group-item list-group-item-action d-flex align-items-center py-2">
+            <span class="flex-grow-1 font-weight-bold">{{fullname}}</span>
+            <span class="text-muted small mr-3">{{username}}</span>
+            <span class="text-muted small">{{email}}</span>
+        </a>
+        {{/users}}
+    </div>
+    {{/hasusers}}
+</div>
