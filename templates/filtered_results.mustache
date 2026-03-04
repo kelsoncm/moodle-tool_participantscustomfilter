@@ -1,7 +1,7 @@
 {{!
     Template: filtered participants results table.
 
-    @package    local_participantscustomfilter
+    @package    tool_participantscustomfilter
     @copyright  2024 IFRN
     @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
 
@@ -13,17 +13,17 @@
         * fieldlabel  string - Human-readable label of the active filter field.
         * filtervalue string - The value being filtered by.
 }}
-<div class="local-participantscustomfilter-results mt-3"
-     id="local-participantscustomfilter-results">
+<div class="tool-participantscustomfilter-results mt-3"
+     id="tool-participantscustomfilter-results">
 
     <h6 class="font-weight-bold">
-        {{#str}} filteredresults, local_participantscustomfilter {{/str}}
+        {{#str}} filteredresults, tool_participantscustomfilter {{/str}}
         <span class="badge badge-secondary ml-1">{{total}}</span>
     </h6>
 
     {{^hasusers}}
     <p class="text-muted">
-        {{#str}} noresults, local_participantscustomfilter {{/str}}
+        {{#str}} noresults, tool_participantscustomfilter {{/str}}
     </p>
     {{/hasusers}}
 

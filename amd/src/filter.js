@@ -14,13 +14,13 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * AMD module for local_participantscustomfilter.
+ * AMD module for tool_participantscustomfilter.
  *
  * Injects the server-rendered filter form (and, when a filter is active,
  * the filtered results panel) into the participants page DOM without any
  * additional AJAX round-trip.
  *
- * @module     local_participantscustomfilter/filter
+ * @module     tool_participantscustomfilter/filter
  * @copyright  2024 IFRN
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
@@ -74,7 +74,7 @@ const parseHTML = (html) => {
  * Initialise the filter.
  *
  * Called by $PAGE->requires->js_call_amd() with the data object built in
- * local_participantscustomfilter_before_standard_html_head().
+ * tool_participantscustomfilter_before_standard_html_head().
  *
  * @param {Object}  config
  * @param {string}  config.formhtml    Server-rendered filter form HTML.
@@ -102,7 +102,7 @@ export const init = (config) => {
         // ----------------------------------------------------------------
         if (formhtml) {
             // Avoid injecting twice (e.g. if init() is called more than once).
-            if (!document.getElementById('local-participantscustomfilter-wrap')) {
+            if (!document.getElementById('tool-participantscustomfilter-wrap')) {
                 const formEl = parseHTML(formhtml);
                 if (formEl) {
                     parent.insertBefore(formEl, anchor);
@@ -116,12 +116,12 @@ export const init = (config) => {
         // so users clearly see what the filtered view contains).
         // ----------------------------------------------------------------
         if (isfiltered && resultshtml) {
-            if (!document.getElementById('local-participantscustomfilter-results')) {
+            if (!document.getElementById('tool-participantscustomfilter-results')) {
                 const resultsEl = parseHTML(resultshtml);
                 if (resultsEl) {
                     // Insert after the form wrapper (or before the table if
                     // the form was not injected).
-                    const formWrap = document.getElementById('local-participantscustomfilter-wrap');
+                    const formWrap = document.getElementById('tool-participantscustomfilter-wrap');
                     const insertBefore = formWrap ? formWrap.nextSibling : anchor;
                     parent.insertBefore(resultsEl, insertBefore);
                 }

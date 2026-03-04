@@ -15,14 +15,14 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Renderable filter form for local_participantscustomfilter.
+ * Renderable filter form for tool_participantscustomfilter.
  *
- * @package    local_participantscustomfilter
+ * @package    tool_participantscustomfilter
  * @copyright  2024 IFRN
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-namespace local_participantscustomfilter\output;
+namespace tool_participantscustomfilter\output;
 
 defined('MOODLE_INTERNAL') || die();
 

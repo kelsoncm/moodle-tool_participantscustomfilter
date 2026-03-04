@@ -15,9 +15,9 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Version details for local_participantscustomfilter.
+ * Version details for tool_participantscustomfilter.
  *
- * @package    local_participantscustomfilter
+ * @package    tool_participantscustomfilter
  * @copyright  2024 IFRN
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
@@ -26,6 +26,6 @@ defined('MOODLE_INTERNAL') || die();
 
 $plugin->version   = 2024042200;       // The current plugin version (YYYYMMDDXX).
 $plugin->requires  = 2024042200;       // Requires Moodle 4.5 (2024042200).
-$plugin->component = 'local_participantscustomfilter';
+$plugin->component = 'tool_participantscustomfilter';
 $plugin->maturity  = MATURITY_STABLE;
 $plugin->release   = '1.0.0';

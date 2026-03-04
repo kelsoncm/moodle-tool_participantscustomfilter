@@ -15,9 +15,9 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Library / callback functions for local_participantscustomfilter.
+ * Library / callback functions for tool_participantscustomfilter.
  *
- * @package    local_participantscustomfilter
+ * @package    tool_participantscustomfilter
  * @copyright  2024 IFRN
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
@@ -37,7 +37,7 @@ defined('MOODLE_INTERNAL') || die();
  * @return string  Empty string (required by the hook API); all content
  *                 is handed to the AMD module via js_call_amd().
  */
-function local_participantscustomfilter_before_standard_html_head(): string {
+function tool_participantscustomfilter_before_standard_html_head(): string {
     global $PAGE, $OUTPUT;
 
     // Guard: $PAGE->url is not always set at this point.
@@ -66,15 +66,15 @@ function local_participantscustomfilter_before_standard_html_head(): string {
     $filtervalue       = optional_param('filtervalue',       '', PARAM_TEXT);
 
     // Collect available custom profile fields.
-    $filtermanager = new \local_participantscustomfilter\filter($courseid);
+    $filtermanager = new \tool_participantscustomfilter\filter($courseid);
     $fields        = $filtermanager->get_custom_fields();
 
     // ----------------------------------------------------------------
     // Render the filter form via our plugin renderer.
     // ----------------------------------------------------------------
-    /** @var local_participantscustomfilter_renderer $renderer */
-    $renderer   = $PAGE->get_renderer('local_participantscustomfilter');
-    $filterform = new \local_participantscustomfilter\output\filter_form(
+    /** @var tool_participantscustomfilter_renderer $renderer */
+    $renderer   = $PAGE->get_renderer('tool_participantscustomfilter');
+    $filterform = new \tool_participantscustomfilter\output\filter_form(
         $courseid,
         $fields,
         $filtercustomfield,
@@ -121,7 +121,7 @@ function local_participantscustomfilter_before_standard_html_head(): string {
         } else {
             // Invalid field – surface a visible warning.
             $notif = new \core\output\notification(
-                get_string('invalidfield', 'local_participantscustomfilter'),
+                get_string('invalidfield', 'tool_participantscustomfilter'),
                 \core\output\notification::NOTIFY_ERROR
             );
             $notif->set_show_closebutton(false);
@@ -136,7 +136,7 @@ function local_participantscustomfilter_before_standard_html_head(): string {
     // position relative to the participants table.
     // ----------------------------------------------------------------
     $PAGE->requires->js_call_amd(
-        'local_participantscustomfilter/filter',
+        'tool_participantscustomfilter/filter',
         'init',
         [[
             'formhtml'    => $formhtml,
