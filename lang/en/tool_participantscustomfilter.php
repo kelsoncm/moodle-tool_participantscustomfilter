@@ -15,9 +15,9 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * English language strings for local_participantscustomfilter.
+ * English language strings for tool_participantscustomfilter.
  *
- * @package    local_participantscustomfilter
+ * @package    tool_participantscustomfilter
  * @copyright  2024 IFRN
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
