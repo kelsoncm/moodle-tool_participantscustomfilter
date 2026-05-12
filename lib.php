@@ -18,7 +18,7 @@
  * Library / callback functions for tool_participantscustomfilter.
  *
  * @package    tool_participantscustomfilter
- * @copyright  2024 IFRN
+ * @copyright  2026 KelsonCM
  * @license    https://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
@@ -40,13 +40,17 @@ defined('MOODLE_INTERNAL') || die();
 function tool_participantscustomfilter_before_standard_html_head(): string {
     global $PAGE, $OUTPUT;
 
+    error_log('tool_participantscustomfilter hook called for ' . $PAGE->url->out());
+
     // Guard: $PAGE->url is not always set at this point.
     if (empty($PAGE->url)) {
         return '';
     }
 
-    // Only inject on the enrol / participants listing page.
-    if (!$PAGE->url->compare(new \moodle_url('/enrol/index.php'), URL_MATCH_BASE)) {
+    // Only inject on the enrol / participants listing page or user index page.
+    $is_enrol_page = $PAGE->url->compare(new \moodle_url('/enrol/index.php'), URL_MATCH_BASE);
+    $is_user_page = $PAGE->url->compare(new \moodle_url('/user/index.php'), URL_MATCH_BASE);
+    if (!$is_enrol_page && !$is_user_page) {
         return '';
     }
 

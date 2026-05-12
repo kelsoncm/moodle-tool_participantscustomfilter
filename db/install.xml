@@ -1,7 +1,25 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<XMLDB PATH="admin/tool/participantscustomfilter/db" VERSION="20240422" COMMENT="XMLDB file for tool_participantscustomfilter (no custom tables required)"
-    xmlns:xsi="https://www.w3.org/2001/XMLSchema-instance"
-    xsi:noNamespaceSchemaLocation="../../../lib/xmldb/xmldb.xsd">
+<XMLDB PATH="admin/tool/participantscustomfilter/db" VERSION="2026051202" COMMENT="tool_participantscustomfilter">
+
   <TABLES>
+
+    <TABLE NAME="tool_participantscustomfilter" COMMENT="tool_participantscustomfilter">
+
+      <FIELDS>
+        <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
+        <FIELD NAME="timecreated" TYPE="int" LENGTH="10" NOTNULL="true"/>
+      </FIELDS>
+
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+      </KEYS>
+
+      <INDEXES>
+        <INDEX NAME="idx_timecreated" UNIQUE="false" FIELDS="timecreated"/>
+      </INDEXES>
+
+    </TABLE>
+
   </TABLES>
+
 </XMLDB>

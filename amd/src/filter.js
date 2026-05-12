@@ -21,7 +21,7 @@
  * additional AJAX round-trip.
  *
  * @module     tool_participantscustomfilter/filter
- * @copyright  2024 IFRN
+ * @copyright  2026 KelsonCM
  * @license    https://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
@@ -40,6 +40,18 @@ const PARTICIPANTS_TABLE_SELECTORS = [
     '.userenrolments',
     '#region-main .flexible',   // table_sql default class
     '#region-main table',       // generic fallback
+];
+
+/**
+ * Ordered list of CSS selectors used to locate the filter form container.
+ *
+ * @type {string[]}
+ */
+const FILTER_FORM_SELECTORS = [
+    '.core-filter-row',
+    '[data-region="filters"]',
+    '.mform',
+    '#region-main form',
 ];
 
 /**
@@ -83,19 +95,29 @@ const parseHTML = (html) => {
  * @param {boolean} config.isfiltered  Whether a filter is currently active.
  */
 export const init = (config) => {
-    const {formhtml, resultshtml, isfiltered} = config;
+    console.log('tool_participantscustomfilter init called', config);
+    const { formhtml, resultshtml, isfiltered } = config;
 
     const inject = () => {
+        console.log('tool_participantscustomfilter inject running');
         // ----------------------------------------------------------------
         // Locate the target element that will be our insertion anchor.
+        // Prefer to insert before the existing filter form, fallback to table.
         // ----------------------------------------------------------------
-        const anchor = findFirst(PARTICIPANTS_TABLE_SELECTORS);
+        let anchor = findFirst(FILTER_FORM_SELECTORS);
+        console.log('anchor from FILTER_FORM_SELECTORS:', anchor);
         if (!anchor) {
-            // Participants table not yet in DOM; nothing to attach to.
+            anchor = findFirst(PARTICIPANTS_TABLE_SELECTORS);
+            console.log('anchor from PARTICIPANTS_TABLE_SELECTORS:', anchor);
+        }
+        if (!anchor) {
+            console.log('No anchor found');
+            // No suitable anchor found.
             return;
         }
 
         const parent = anchor.parentNode;
+        console.log('parent:', parent);
 
         // ----------------------------------------------------------------
         // Inject filter form immediately before the participants table.

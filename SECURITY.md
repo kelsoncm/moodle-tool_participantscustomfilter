@@ -145,7 +145,7 @@ This plugin is licensed under the [GNU General Public License v3.0 or later](LIC
 
 ## Contact & Support
 
-- **GitHub Repository**: https://github.com/IFRN/moodle-tool_participantscustomfilter
+- **GitHub Repository**: https://github.com/kelsoncm/moodle-tool_participantscustomfilter
 - **Bug Reports**: GitHub Issues (non-security only)
 - **Security Reports**: See "Reporting a Vulnerability" section above
 

@@ -18,14 +18,14 @@
  * Version details for tool_participantscustomfilter.
  *
  * @package    tool_participantscustomfilter
- * @copyright  2024 IFRN
+ * @copyright  2026 KelsonCM
  * @license    https://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
 defined('MOODLE_INTERNAL') || die();
 
-$plugin->version   = 2024042200;       // The current plugin version (YYYYMMDDXX).
+$plugin->version   = 2026051204;       // The current plugin version (YYYYMMDDXX).
 $plugin->requires  = 2024042200;       // Requires Moodle 4.5 (2024042200).
 $plugin->component = 'tool_participantscustomfilter';
 $plugin->maturity  = MATURITY_STABLE;
-$plugin->release   = '1.0.0';
+$plugin->release   = '1.0.3';
