@@ -42,17 +42,17 @@ function tool_participantscustomfilter_before_standard_html_head(): string {
 
     error_log('tool_participantscustomfilter hook called for ' . $PAGE->url->out());
 
-    // Guard: $PAGE->url is not always set at this point.
-    if (empty($PAGE->url)) {
-        return '';
-    }
+    // // Guard: $PAGE->url is not always set at this point.
+    // if (empty($PAGE->url)) {
+    //     return '';
+    // }
 
-    // Only inject on the enrol / participants listing page or user index page.
-    $is_enrol_page = $PAGE->url->compare(new \moodle_url('/enrol/index.php'), URL_MATCH_BASE);
-    $is_user_page = $PAGE->url->compare(new \moodle_url('/user/index.php'), URL_MATCH_BASE);
-    if (!$is_enrol_page && !$is_user_page) {
-        return '';
-    }
+    // // Only inject on the enrol / participants listing page or user index page.
+    // $is_enrol_page = $PAGE->url->compare(new \moodle_url('/enrol/index.php'), URL_MATCH_BASE);
+    // $is_user_page = $PAGE->url->compare(new \moodle_url('/user/index.php'), URL_MATCH_BASE);
+    // if (!$is_enrol_page && !$is_user_page) {
+    //     return '';
+    // }
 
     $courseid = (int) $PAGE->url->get_param('id');
     if ($courseid <= 0) {
@@ -92,6 +92,7 @@ function tool_participantscustomfilter_before_standard_html_head(): string {
     $resultshtml = '';
     $isfiltered  = ($filtercustomfield !== '' && $filtervalue !== '');
 
+    
     if ($isfiltered) {
         if ($filtermanager->is_valid_field($filtercustomfield)) {
             $filtered = $filtermanager->get_filtered_participants(
@@ -142,12 +143,13 @@ function tool_participantscustomfilter_before_standard_html_head(): string {
     $PAGE->requires->js_call_amd(
         'tool_participantscustomfilter/filter',
         'init',
-        [[
-            'formhtml'    => $formhtml,
-            'resultshtml' => $resultshtml,
-            'isfiltered'  => $isfiltered,
-        ]]
+        [
+            [
+                'formhtml'    => $formhtml,
+                'resultshtml' => $resultshtml,
+                'isfiltered'  => $isfiltered,
+            ]
+        ]
     );
-
     return '';
 }

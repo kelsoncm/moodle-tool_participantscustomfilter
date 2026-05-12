@@ -152,6 +152,7 @@ export const init = (config) => {
     };
 
     // Run as soon as the DOM is interactive (handles both early and late calls).
+    console.log("document.readyState", document.readyState);
     if (document.readyState === 'loading') {
         document.addEventListener('DOMContentLoaded', inject);
     } else {
